@@ -1,0 +1,20 @@
+targetNamespace: dev
+spec:
+  destination:
+    project: dev
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/OleksandrKorliuk/hashproof-platform.git
+    targetRevision: HEAD
+
+apps:
+  - name: hashproof-consumer
+    autoSync: true
+    source:
+      path: charts/hashproof-consumer
+      valueFile: values-dev.yaml
+  - name: hashproof-service
+    autoSync: true
+    source:
+      path: charts/hashproof-service
+      valueFile: values-dev.yaml

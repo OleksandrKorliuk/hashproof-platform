@@ -1,0 +1,15 @@
+{{- $fullName := include "hashproof-service.name" . -}}
+{{- $chartVersion := include "hashproof-service.chart" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/name: {{ $fullName }}
+    helm.sh/chart: {{ $chartVersion }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  {{- range $key, $value :=  .Values.config }}
+    {{ $key }}: {{ $value | quote}}
+    {{- end }}

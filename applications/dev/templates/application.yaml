@@ -1,0 +1,38 @@
+{{- $values := .Values -}}
+{{ range .Values.apps }}
+{{ if not .disabled }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $values.targetNamespace}}-{{ .name }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ $values.spec.destination.project }}
+  source:
+    repoURL: {{ $values.spec.source.repoURL }}
+    path: {{ .source.path }}
+    targetRevision: {{ $values.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - {{ .source.valueFile }}
+  destination:
+    name: {{ $values.spec.destination.name }}
+    namespace: {{ $values.targetNamespace }}
+  {{ if .autoSync -}}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  {{ else -}}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+  {{ end }}
+
+{{ end }}
+{{ end }}

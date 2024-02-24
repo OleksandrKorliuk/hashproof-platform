@@ -1,0 +1,21 @@
+{{- $fullName := include "hashproof-consumer.name" . -}}
+{{- $chartVersion := include "hashproof-consumer.chart" . -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/name: {{ $fullName }}
+    helm.sh/chart: {{ $chartVersion }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.image.ports.containerPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ $fullName }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

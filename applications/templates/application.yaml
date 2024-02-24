@@ -6,7 +6,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ $values.targetNamespace}}-{{ .name }}
-  namespace: argocd
+  namespace: cicd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -19,20 +19,13 @@ spec:
       valueFiles:
         - {{ .source.valueFile }}
   destination:
-    name: {{ $values.spec.destination.name }}
+    server: {{ $values.spec.destination.server }}
     namespace: {{ $values.targetNamespace }}
   {{ if .autoSync -}}
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+    automated: {}
   {{ else -}}
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
+  syncPolicy: {}
   {{ end }}
-
 {{ end }}
 {{ end }}

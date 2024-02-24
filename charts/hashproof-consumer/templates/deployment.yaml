@@ -21,9 +21,6 @@ spec:
         app.kubernetes.io/name: {{ $fullName }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      {{- if .Values.serviceAccount.enabled }}
-      serviceAccountName: {{ .Values.serviceAccount.name }}
-      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

@@ -1,0 +1,27 @@
+{{ if eq .Values.spec.destination.project "dev" }}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # Project description
+  description: Applications for dev project.
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - {{ .Values.spec.source.repoURL }}
+
+  # Only permit applications to deploy to the namespace in the same cluster
+  destinations:
+  - namespace: 'dev'
+    server: https://kubernetes.default.svc
+
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+{{ end }}
+

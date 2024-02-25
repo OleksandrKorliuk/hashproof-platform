@@ -29,7 +29,7 @@ spec:
             - configMapRef:
                 name: {{ $fullName }}
             - secretRef:
-                name: {{ .Values.serects.name }}
+                name: {{ .Values.secrets.name }}
           ports:
             - name: {{.Values.image.ports.name }}
               containerPort: {{.Values.image.ports.containerPort }}

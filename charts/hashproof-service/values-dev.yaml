@@ -68,7 +68,8 @@ config:
   CONSUMER_THREAD_QUEUE_CAPACITY: "500"
   CONSUMER_THREAD_NAME_PREFIX: hashproof-consumer-task
 
-
+secrets:
+  name: hashproof-secret
 resources: {}
 
 nodeSelector: {}

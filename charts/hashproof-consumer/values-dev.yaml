@@ -42,6 +42,8 @@ config:
   PULSAR_HASHPROOF_TRANSACTION_TOPIC_NAME: hashproof-transaction-topic
   PULSAR_HASHPROOF_TRANSACTION_PRODUCER_NAME: hashproof-transaction-producer
 
+secrets:
+  name: hashproof-secret
 
 resources: {}
 

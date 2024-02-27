@@ -25,11 +25,26 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: HEDERA_OPERATOR_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: hedera_operator_id
+            - name: HEDERA_OPERATOR_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: hedera_operator_key
+            - name: HEDERA_TOPIC_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: hedera_topic_id
           envFrom:
             - configMapRef:
                 name: {{ $fullName }}
-            - secretRef:
-                name: {{ .Values.secrets.name }}
+
           ports:
             - name: {{.Values.image.ports.name }}
               containerPort: {{.Values.image.ports.containerPort }}

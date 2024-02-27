@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: us-central1-docker.pkg.dev/proofofaction/hashproof-repo/hedera-hashproof-service
-  tag: 0.0.2
+  tag: 0.0.3
   ports:
     name: http
     protocol: TCP
@@ -25,48 +25,25 @@ ingress:
     - domain.com
 
 config:
+  SERVER_PORT: 8080
+  MAX_FILE_SIZE: 5mb
+  DATABASE_URL: jdbc:postgresql://10.242.160.3:5432/hedera_hashproof
+  HIKARI_CONN_TIMEOUT: 3000
+  HIKARI_IDLE_TIMEOUT: 60000
+  HIKARI_MAX_POOL_SIZE: 50
+  HIKARI_MIN_IDLE: 20
+  DDL_AUTO: create
+
   HEDERA_ENVIRONMENT: TESTNET
   MIRROR_NODE_URL: https://testnet.mirrornode.hedera.com
   MIRROR_NODE_ADDRESS: hcs.testnet.mirrornode.hedera.com:5600
   MIRROR_NODE_API_VERSION: /api/v1/
   MIRROR_NODE_TOPIC_BASE_URI: /api/v1/topics/
   MIRROR_NODE_TRANSACTION_BASE_URI: /api/v1/transactions/
-  DATABASE_URL: jdbc:postgresql://10.242.160.3:5432/hedera_hashproof
+
   PULSAR_URL: pulsar://pulsar-r1-proxy.pulsar:6650
   PULSAR_HASPROOF_TOPIC_NAME: hashproof-hcs-topic
   PULSAR_HASHPROOF_PRODUCER_NAME: hashproof-hcs
-  PULSAR_HASPROOF_TXN_TOPIC_NAME: hashproof-transaction-topic
-  PULSAR_HASHPROOF_TXN_CONSUMER_NAME: hashproof-transaction-consumer
-  PULSAR_HASHPROOF_TXN_SUBSCRIPTION_NAME: hashproof-transaction-subscription
-  PULSAR_DEAD_LETTER_TXN_TOPIC_NAME: dead-letter-transaction-topic
-  MESSAGE_REDELIVERY_DELAY: "90"
-  MESSAGE_RETRY_COUNT: "10"
-  CB_MIRROR_NODE_ASPECT_ORDER: "1"
-  CB_MIN_NUM_OF_CALLS: "3"
-  CB_OPEN_TO_HALFOPEN_AUTOMATION: "true"
-  CB_WAIT_DURATION_IN_OPEN_STATE: 5s
-  CB_PERMITTED_NUM_OF_CALLS_IN_HALFOPEN_STATE: "3"
-  RETRY_MIRROR_NODE_ASPECT_ORDER: "2"
-  RETRY_MAX_ATTEMPTS: "3"
-  RETRY_WAIT_DURATION: 5s
-  PULSAR_HASHPROOF_CONSUMER_NAME: hash-proof-event-consumer
-  PULSAR_HASHPROOF_SUBSCRIPTION_NAME: hashproof-event-subscription
-  PULSAR_DEAD_LETTER_HASHPROOF_TOPIC_NAME: dead-letter-hp-topic
-  BACKOFF_MIN_DELAY_TIME: "10"
-  BACKOFF_MULTIPLIER: "2"
-  PULSAR_HASHPROOF_TRANSACTION_TOPIC_NAME: hashproof-transaction-topic
-  PULSAR_HASHPROOF_TRANSACTION_PRODUCER_NAME: hashproof-transaction-producer
-  JWT_SECURITY: security-on
-  ID: fe25ed75-397c-40bb-976c-17adf7b85n01
-  NAME: admin
-  EMAIL: admin@swirldslabs.com
-  ACCESS_TOKEN_EXP_TIME_LENGTH: "600000"
-  REFRESH_TOKEN_EXP_TIME_LENGTH: "3600000"
-  GRACEFUL_SHUTDOWN_TIME: "10"
-  CONSUMER_THREAD_CORE_POOL_SIZE: "5"
-  CONSUMER_THREAD_MAX_POOL_SIZE: "10"
-  CONSUMER_THREAD_QUEUE_CAPACITY: "500"
-  CONSUMER_THREAD_NAME_PREFIX: hashproof-consumer-task
 
 secrets:
   name: hashproof-secret

@@ -41,6 +41,31 @@ spec:
                 secretKeyRef:
                   name: hashproof-secret
                   key: hedera_topic_id
+            - name: HEDERA_HASHPROOF_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: username
+            - name: HEDERA_HASHPROOF_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: password
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: secret
+            - name: ACCESS_TOKEN_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: access_token_secret_key
+            - name: REFRESH_TOKEN_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hashproof-secret
+                  key: refresh_token_secret_key
           envFrom:
             - configMapRef:
                 name: {{ $fullName }}

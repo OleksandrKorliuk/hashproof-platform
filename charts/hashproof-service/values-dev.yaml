@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: us-central1-docker.pkg.dev/proofofaction/hashproof-repo/hedera-hashproof-service
-  tag: 0.0.2
+  tag: 0.0.4
   ports:
     name: http
     protocol: TCP

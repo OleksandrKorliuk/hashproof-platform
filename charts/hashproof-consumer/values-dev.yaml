@@ -5,7 +5,7 @@ fullnameOverride: ""
 
 image:
   repository: us-central1-docker.pkg.dev/proofofaction/hashproof-repo/hedera-hashproof-consumer
-  tag: 0.0.2
+  tag: 0.0.4
   pullPolicy: Always
   ports:
     name: http
@@ -29,6 +29,7 @@ ingress:
     kubernetes.io/tls-acme: "true"
 
 config:
+  SERVER_PORT: 8080
   HEDERA_ENVIRONMENT: TESTNET
   MIRROR_NODE_URL: https://testnet.mirrornode.hedera.com
   MIRROR_NODE_ADDRESS: hcs.testnet.mirrornode.hedera.com:5600

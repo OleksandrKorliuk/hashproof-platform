@@ -41,12 +41,12 @@ spec:
                 secretKeyRef:
                   name: hashproof-secret
                   key: hedera_topic_id
-            - name: HEDERA_HASHPROOF_DB_USERNAME
+            - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: hashproof-secret
                   key: username
-            - name: HEDERA_HASHPROOF_DB_PASSWORD
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: hashproof-secret

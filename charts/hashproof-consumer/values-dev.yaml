@@ -5,7 +5,7 @@ fullnameOverride: ""
 
 image:
   repository: us-central1-docker.pkg.dev/proofofaction/hashproof-repo/hedera-hashproof-consumer
-  tag: 0.0.5
+  tag: 0.1.0
   pullPolicy: Always
   ports:
     name: http

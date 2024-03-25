@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: us-central1-docker.pkg.dev/proofofaction/hashproof-repo/hedera-hashproof-service
-  tag: 0.0.6
+  tag: 0.1.0
   ports:
     name: http
     protocol: TCP
@@ -25,6 +25,7 @@ ingress:
     - domain.com
 
 config:
+  DDL_AUTO: create
   HEDERA_ENVIRONMENT: TESTNET
   MIRROR_NODE_URL: https://testnet.mirrornode.hedera.com
   MIRROR_NODE_ADDRESS: hcs.testnet.mirrornode.hedera.com:5600

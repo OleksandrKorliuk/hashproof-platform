@@ -25,7 +25,7 @@ ingress:
     - domain.com
 
 config:
-  DDL_AUTO: create
+  DDL_AUTO: validate
   HEDERA_ENVIRONMENT: TESTNET
   MIRROR_NODE_URL: https://testnet.mirrornode.hedera.com
   MIRROR_NODE_ADDRESS: hcs.testnet.mirrornode.hedera.com:5600
@@ -34,7 +34,7 @@ config:
   MIRROR_NODE_TRANSACTION_BASE_URI: /api/v1/transactions/
   DATABASE_URL: jdbc:postgresql://10.242.160.3:5432/hedera_hashproof
   PULSAR_URL: pulsar://pulsar-r1-proxy.pulsar:6650
-  PULSAR_HASPROOF_TOPIC_NAME: hashproof-hcs-topic
+  PULSAR_HASPROOF_TOPIC_NAME: hashproof-hcs-topic-new
   PULSAR_HASHPROOF_PRODUCER_NAME: hashproof-hcs
   PULSAR_HASPROOF_TXN_TOPIC_NAME: hashproof-transaction-topic
   PULSAR_HASHPROOF_TXN_CONSUMER_NAME: hashproof-transaction-consumer

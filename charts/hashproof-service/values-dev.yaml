@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: us-central1-docker.pkg.dev/proofofaction/hashproof-repo/hedera-hashproof-service
-  tag: 0.1.0
+  tag: 0.1.1
   ports:
     name: http
     protocol: TCP
@@ -26,7 +26,7 @@ ingress:
 
 config:
   SERVER_PORT: 8080
-  PROFILES_ACTIVE: default
+  PROFILES_ACTIVE: oauth
   MAX_FILE_SIZE: 5MB
   HEDERA_ENVIRONMENT: TESTNET
   MIRROR_NODE_ADDRESS: testnet.mirrornode.hedera.com:443
